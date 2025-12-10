@@ -5,6 +5,7 @@
  * Integra con los microservicios backend mediante REST API.
  * 
  * @author Paula Martinez (Diseño original)
+ * @modified Juan Estevan Ariza Ortiza (Arreglo de apartados)
  * @modified Juan Sebastián Bravo Rojas (Refactorización completa y correcciones)
  * @version 2.0
  * @since 2025-12-09
@@ -185,76 +186,67 @@ function initOnboardingLogic() {
     if (!nextBtn) return;
 
     nextBtn.addEventListener('click', async () => {
-        if (currentStep < totalSteps) {
-            // Validation for Step 1 (Name)
-            if (currentStep === 1) {
-                const name = document.getElementById('profileName').value;
-                if (!name.trim()) {
-                    alert("Por favor ingresa tu nombre");
-                    return;
-                }
-            }
-            // Validation for Step 4 (Photos) happens when button is clicked on Step 3? No, currentStep is 3, moving to 4.
-            // Wait, logic is: if currentStep < totalSteps (which is 4), increment and move.
-            // If currentStep is 3, we move to 4. 
-            // If currentStep is 4, we are ON step 4, button likely says "FINISH".
-
-            // Logic correction: The listener is for "Next" button. 
-            // If we are on step 1, 2, 3 -> Move Next.
-            // If we are on step 4 -> Finish.
-
-            moveStep(++currentStep);
-            updateProgress(progressBar, currentStep, totalSteps);
-            if (currentStep === totalSteps) {
-                nextBtn.innerText = "FINALIZAR";
-            }
-        } else {
-            // We are on Last Step (4) trying to Finish
-            if (uploadedPhotosCount < 2) {
-                alert("Por favor sube al menos 2 fotos.");
-                return;
-            }
-
-            // Disable button to prevent double-submit
-            nextBtn.disabled = true;
-            nextBtn.innerText = "Guardando...";
-
-            try {
-                await saveProfile();
-            } catch (e) {
-                console.error(e);
-                alert("Error técnico al guardar. Intenta de nuevo.");
-                nextBtn.disabled = false;
-                nextBtn.innerText = "FINALIZAR";
-            }
+    // VALIDACIONES ANTES DE AVANZAR
+    if (currentStep === 1) {
+        const name = document.getElementById('profileName').value;
+        if (!name.trim()) {
+            alert("Por favor ingresa tu nombre");
+            return; // Detiene la ejecución aquí
         }
-    });
-
-    // Photo Upload Logic
-    const addPhotoBtn = document.getElementById('addPhotoBtn');
-    const photoInput = document.getElementById('photoInput');
-    const photoSlots = document.querySelectorAll('.photo-slot:not(.add-photo)');
-    let uploadedPhotosCount = 0;
-
-    if (addPhotoBtn && photoInput) {
-        addPhotoBtn.addEventListener('click', () => photoInput.click());
-
-        photoInput.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (file && uploadedPhotosCount < photoSlots.length) {
-                const reader = new FileReader();
-                reader.onload = (ev) => {
-                    const slot = photoSlots[uploadedPhotosCount];
-                    slot.style.backgroundImage = `url('${ev.target.result}')`;
-                    slot.style.backgroundSize = 'cover';
-                    slot.style.backgroundPosition = 'center';
-                    slot.classList.add('has-photo'); // Mark as filled
-                    uploadedPhotosCount++;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
     }
+
+    if (currentStep === 2) {
+        const day = document.getElementById('dobDay').value;
+        const month = document.getElementById('dobMonth').value;
+        const year = document.getElementById('dobYear').value;
+        
+        if (!day || !month || !year) {
+            alert("Por favor completa tu fecha de nacimiento");
+            return;
+        }
+        
+        const age = 2025 - parseInt(year);
+        if (age < 18) {
+            alert("Debes ser mayor de 18 años");
+            return;
+        }
+    }
+
+    if (currentStep === 3) {
+        const genderInput = document.querySelector('input[name="gender"]:checked');
+        if (!genderInput) {
+            alert("Por favor selecciona tu género");
+            return;
+        }
+    }
+
+    // AVANZAR AL SIGUIENTE PASO
+    if (currentStep < totalSteps) {
+        moveStep(++currentStep);
+        updateProgress(progressBar, currentStep, totalSteps);
+        if (currentStep === totalSteps) {
+            nextBtn.innerText = "FINALIZAR";
+        }
+    } else {
+        // Estamos en el último paso (4) - Finalizar
+        if (uploadedPhotosCount < 2) {
+            alert("Por favor sube al menos 2 fotos.");
+            return;
+        }
+
+        nextBtn.disabled = true;
+        nextBtn.innerText = "Guardando...";
+
+        try {
+            await saveProfile();
+        } catch (e) {
+            console.error(e);
+            alert("Error técnico al guardar. Intenta de nuevo.");
+            nextBtn.disabled = false;
+            nextBtn.innerText = "FINALIZAR";
+        }
+    }
+});
 }
 
 function moveStep(step) {
@@ -654,6 +646,7 @@ function updateHeaderUI(name, photoUrl) {
 }
 
 function populateProfileUI(user, photoId) {
+    
     const sEmail = document.getElementById('settingsEmail');
     if (sEmail) sEmail.innerText = user.email || "No email";
 
@@ -674,6 +667,32 @@ function populateProfileUI(user, photoId) {
     if (bioInput) bioInput.value = user.descripcion || "";
 
     // Sliders & other inputs would go here
+    // dentro de populateProfileUI(user, photoId) — al final del bloque
+const dInput = document.getElementById('editDistance');
+const dLabel = document.getElementById('distanceLabel');
+if (dInput && dLabel) {
+    const value = user.distanciaMaxima || user.distancia || 10;
+    dInput.value = value;
+    dLabel.innerText = `${value} km`;
+}
+
+const aInput = document.getElementById('editAgeRange');
+const aLabel = document.getElementById('ageRangeLabel');
+if (aInput && aLabel) {
+    const maxAge = user.edadMaximaBuscada || user.edadBuscadaMax || user.edad || 28;
+    aInput.value = maxAge;
+    aLabel.innerText = `18 - ${maxAge}`;
+}
+
+const phone = document.getElementById('editPhone');
+if (phone) phone.value = user.telefono || user.phone || '';
+
+const email = document.getElementById('editEmail');
+if (email) email.value = user.email || '';
+
+const visible = document.getElementById('editVisible');
+if (visible) visible.checked = user.visible === undefined ? true : !!user.visible;
+
 }
 
 async function loadMatches(container) {
@@ -932,4 +951,134 @@ async function initProfileLogic() {
             UserContext.logout();
         });
     }
+
+    // ----------------------
+// Editor de perfil (activar/guardar) + mostrar valores numéricos en sliders
+// ----------------------
+(function wireProfileEditor() {
+    // Espera que el DOM y el initProfileLogic hayan cargado elementos
+    document.addEventListener('DOMContentLoaded', () => {
+        const toggleBtn = document.getElementById('toggleEditBtn');
+        const saveBtn = document.getElementById('saveProfileBtn');
+
+        const nameInput = document.getElementById('editName');
+        const bioInput = document.getElementById('editBio');
+        const phoneInput = document.getElementById('editPhone');
+        const emailInput = document.getElementById('editEmail');
+        const distanceInput = document.getElementById('editDistance');
+        const ageInput = document.getElementById('editAgeRange');
+        const visibleInput = document.getElementById('editVisible');
+
+        const distanceLabel = document.getElementById('distanceLabel');
+        const ageRangeLabel = document.getElementById('ageRangeLabel');
+
+        // Helper: habilita/deshabilita campos
+        function setEditing(enabled) {
+            [nameInput, bioInput, phoneInput, emailInput, distanceInput, ageInput, visibleInput].forEach(el => {
+                if (!el) return;
+                el.disabled = !enabled;
+            });
+            saveBtn.classList.toggle('hidden', !enabled);
+            toggleBtn.innerText = enabled ? 'Cancelar' : 'Modificar';
+            toggleBtn.dataset.editing = enabled ? 'true' : 'false';
+        }
+
+        // Inicial: no editar
+        setEditing(false);
+
+        // Mostrar valores al mover sliders
+        if (distanceInput && distanceLabel) {
+            distanceLabel.innerText = `${distanceInput.value} km`;
+            distanceInput.addEventListener('input', (e) => {
+                distanceLabel.innerText = `${e.target.value} km`;
+            });
+        }
+
+        if (ageInput && ageRangeLabel) {
+            ageRangeLabel.innerText = `18 - ${ageInput.value}`;
+            ageInput.addEventListener('input', (e) => {
+                ageRangeLabel.innerText = `18 - ${e.target.value}`;
+            });
+        }
+
+        // Toggle editar/cancelar
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', () => {
+                const editing = toggleBtn.dataset.editing === 'true';
+                if (!editing) {
+                    setEditing(true);
+                } else {
+                    // cancelar: recargar datos desde contexto/servidor para restaurar
+                    // Llamamos a fetchUserProfile para re-popular UI (ya existente)
+                    fetchUserProfile(); // actualiza UI con los datos del servidor
+                    setEditing(false);
+                }
+            });
+        }
+
+        // Guardar cambios: hace PUT al endpoint /usuario/{id}
+        if (saveBtn) {
+            saveBtn.addEventListener('click', async () => {
+                saveBtn.innerText = 'Guardando...';
+                saveBtn.disabled = true;
+
+                // Datos a actualizar
+                const user = UserContext.get();
+                if (!user || !user.id) {
+                    alert('Usuario no identificado. Inicia sesión de nuevo.');
+                    saveBtn.innerText = 'Guardar cambios';
+                    saveBtn.disabled = false;
+                    return;
+                }
+
+                const payload = {
+                    nombre: nameInput ? nameInput.value : undefined,
+                    descripcion: bioInput ? bioInput.value : undefined,
+                    telefono: phoneInput ? phoneInput.value : undefined,
+                    email: emailInput ? emailInput.value : undefined,
+                    // campos de discovery (si tu backend los soporta)
+                    distanciaMaxima: distanceInput ? parseInt(distanceInput.value) : undefined,
+                    edadMaximaBuscada: ageInput ? parseInt(ageInput.value) : undefined,
+                    visible: visibleInput ? !!visibleInput.checked : undefined
+                };
+
+                // Limpia undefined
+                Object.keys(payload).forEach(k => { if (payload[k] === undefined) delete payload[k]; });
+
+                try {
+                    const res = await fetch(`${USER_API}/${user.id}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (res.ok) {
+                        const updated = await res.json();
+                        // Actualiza contexto y UI
+                        UserContext.set({
+                            nombre: updated.nombre || updated.name || user.nombre,
+                            descripcion: updated.descripcion || user.descripcion,
+                            fotoUrl: updated.fotoUrl || user.fotoUrl
+                        });
+                        alert('Perfil actualizado correctamente.');
+                        // refresca UI y sale de modo edición
+                        await fetchUserProfile();
+                        setEditing(false);
+                    } else {
+                        const txt = await res.text();
+                        console.error('PUT usuario error:', res.status, txt);
+                        alert('No se pudo actualizar el perfil: ' + (txt || res.status));
+                    }
+                } catch (err) {
+                    console.error('Error guardando perfil', err);
+                    alert('Error de conexión al guardar perfil.');
+                } finally {
+                    saveBtn.innerText = 'Guardar cambios';
+                    saveBtn.disabled = false;
+                }
+            });
+        }
+    });
+})();
+
 }

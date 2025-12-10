@@ -5,6 +5,7 @@
  * Acts as a single source of truth for user data across the application.
  * 
  * @author Paula Martinez (Diseño original)
+ * @modfied Juan Estevan Ariza Ortiz (Manejo de información)
  * @modified Juan Sebastián Bravo Rojas (Refactorización y correcciones)
  * @version 2.0
  * @since 2025-12-09

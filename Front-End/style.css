@@ -1058,6 +1058,32 @@ input:checked+.slider:before {
     font-size: 0.8rem;
 }
 
+/* Inputs en settings */
+.text-input {
+    width: 60%;
+    padding: 8px 10px;
+    border: 1px solid #e6e6e6;
+    border-radius: 8px;
+    background: #fff;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.setting-item > .text-input, .setting-item > textarea {
+    text-align: right;
+}
+
+.action-btn.hidden {
+    display: none !important;
+}
+
+/* Ajuste para textarea */
+.setting-item textarea.text-input {
+    resize: vertical;
+    width: 100%;
+}
+
+
 /* Photo Upload Grid */
 .photo-grid {
     display: grid;
@@ -1094,4 +1120,20 @@ input:checked+.slider:before {
 
 .photo-slot.has-photo {
     border: 2px solid #fe3c72;
+}
+
+.setting-item {
+    position: relative;
+}
+
+.setting-item span {
+    pointer-events: none;
+}
+
+.setting-item input,
+.setting-item textarea,
+.setting-item input[type=range] {
+    pointer-events: auto !important;
+    z-index: 10;
+    position: relative;
 }
