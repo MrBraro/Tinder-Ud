@@ -1,0 +1,7 @@
+com\tinder\ud\match\repository\MatchRepository.class
+com\tinder\ud\match\dto\MatchDTO.class
+com\tinder\ud\match\entity\Match.class
+com\tinder\ud\match\service\impl\MatchServiceImpl.class
+com\tinder\ud\match\MatchServiceApplication.class
+com\tinder\ud\match\controller\MatchController.class
+com\tinder\ud\match\service\MatchService.class

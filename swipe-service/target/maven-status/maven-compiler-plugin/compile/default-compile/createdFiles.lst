@@ -1,0 +1,7 @@
+com\tinder\ud\swipe\controller\SwipeController.class
+com\tinder\ud\swipe\dto\SwipeDTO.class
+com\tinder\ud\swipe\repository\SwipeRepository.class
+com\tinder\ud\swipe\service\SwipeService.class
+com\tinder\ud\swipe\service\impl\SwipeServiceImpl.class
+com\tinder\ud\swipe\entity\Swipe.class
+com\tinder\ud\swipe\SwipeServiceApplication.class

@@ -1,0 +1,7 @@
+com\tinder\ud\seguidor\entity\Seguidor.class
+com\tinder\ud\seguidor\repository\SeguidorRepository.class
+com\tinder\ud\seguidor\service\SeguidorService.class
+com\tinder\ud\seguidor\service\impl\SeguidorServiceImpl.class
+com\tinder\ud\seguidor\controller\SeguidorController.class
+com\tinder\ud\seguidor\dto\SeguidorDTO.class
+com\tinder\ud\seguidor\SeguidorServiceApplication.class

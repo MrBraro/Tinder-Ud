@@ -1,0 +1,7 @@
+com\tinder\ud\media\dto\MediaDTO.class
+com\tinder\ud\media\entity\Media.class
+com\tinder\ud\media\service\impl\MediaServiceImpl.class
+com\tinder\ud\media\controller\MediaController.class
+com\tinder\ud\media\repository\MediaRepository.class
+com\tinder\ud\media\MediaServiceApplication.class
+com\tinder\ud\media\service\MediaService.class

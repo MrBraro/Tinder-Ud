@@ -1,0 +1,7 @@
+com\tinder\ud\usuario\service\impl\UsuarioServiceImpl.class
+com\tinder\ud\usuario\UsuarioServiceApplication.class
+com\tinder\ud\usuario\entity\Usuario.class
+com\tinder\ud\usuario\repository\UsuarioRepository.class
+com\tinder\ud\usuario\controller\UsuarioController.class
+com\tinder\ud\usuario\dto\UsuarioDTO.class
+com\tinder\ud\usuario\service\UsuarioService.class
