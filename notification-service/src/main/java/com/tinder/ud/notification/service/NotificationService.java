@@ -8,7 +8,7 @@ import java.util.List;
  * Define operaciones para registrar y consultar logs.
  * 
  * @author Paula Martinez
- * @version 1.0
+ * @version 3.0
  * @since 2025-12-09
  */
 public interface NotificationService {

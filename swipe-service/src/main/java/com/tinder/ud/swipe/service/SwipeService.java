@@ -6,7 +6,7 @@ import com.tinder.ud.swipe.dto.SwipeDTO;
  * Servicio que define operaciones relacionadas con swipes: registrar y validar likes.
  * 
  * @author Juan
- * @version 1.0
+ * @version 3.0
  * @since 2025-12-09
  */
 public interface SwipeService {

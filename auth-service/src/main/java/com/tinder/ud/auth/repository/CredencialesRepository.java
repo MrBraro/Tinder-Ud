@@ -10,7 +10,7 @@ import java.util.Optional;
  * Proporciona métodos para búsquedas por email y validación de existencia.
  * 
  * @author Juan Sebastian BRavo Rojas
- * @version 1.0
+ * @version 3.0
  * @since 2025-12-09
  */
 @Repository

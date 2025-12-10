@@ -16,6 +16,10 @@ import java.util.stream.Collectors;
  * y eliminación de usuarios.
  *
  * También incluye mapeo entre entidades y DTOs.
+ * 
+ * @author Juan Sebastian Bravo Rojas
+ * @version 3.0
+ * @since 2025-12-10
  */
 @Service
 public class UsuarioServiceImpl implements UsuarioService {

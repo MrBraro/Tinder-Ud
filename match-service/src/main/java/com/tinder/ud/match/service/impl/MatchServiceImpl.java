@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  * consultando el swipe-service y gestionando persistencia en la base de datos.
  *
  * @author Juan Estevan Ariza Ortiz
- * @version 1.0
+ * @version 3.0
  * @since 2025-12-09
  */
 @Service
@@ -42,7 +42,7 @@ public class MatchServiceImpl implements MatchService {
      */
     @Override
     public MatchDTO verificarMatch(Long idUsuario1, Long idUsuario2) {
-        // Enforce order to avoid duplicates (min, max)
+
         Long u1 = Math.min(idUsuario1, idUsuario2);
         Long u2 = Math.max(idUsuario1, idUsuario2);
 
@@ -56,7 +56,7 @@ public class MatchServiceImpl implements MatchService {
         Boolean like2 = restTemplate.getForObject(SWIPE_SERVICE_URL + u2 + "/" + u1, Boolean.class);
 
         if (Boolean.TRUE.equals(like1) && Boolean.TRUE.equals(like2)) {
-            // It's a match!
+            // Es match!
             Match match = new Match();
             match.setIdUsuario1(u1);
             match.setIdUsuario2(u2);
@@ -64,10 +64,8 @@ public class MatchServiceImpl implements MatchService {
 
             Match saved = matchRepository.save(match);
 
-            // Notify
+            // Notificacion
             try {
-                // Just fire and forget for now, or log error
-                // restTemplate.postForObject(NOTIFICATION_SERVICE_URL, logDTO, Void.class);
             } catch (Exception e) {
                 System.err.println("Error enviando notificacion: " + e.getMessage());
             }

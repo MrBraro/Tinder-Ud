@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
  * También se comunica con el microservicio Match para registrar coincidencias.
  * 
  * @author Juan Estavan Ariza Ortiz
- * @version 1.0
+ * @version 2.0
  * @since 2025-12-10
  */
 @Service

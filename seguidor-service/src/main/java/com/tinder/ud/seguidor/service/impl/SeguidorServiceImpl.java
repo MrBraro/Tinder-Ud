@@ -16,8 +16,8 @@ import java.util.stream.Collectors;
  * Implementación del servicio encargado de gestionar las relaciones de seguimiento entre usuarios.
  * Valida existencia de usuarios, crea relaciones, las elimina y consulta seguidores y seguidos.
  *
- * @author Juan
- * @version 1.0
+ * @author Juan Estevan Ariza Ortiz
+ * @version 3.0
  * @since 2025-12-09
  */
 @Service

@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
  *
  * <p>Corresponde a la tabla "matches".</p>
  *
- * @author …
- * @version 1.0
+ * @author Juan Estevan Ariza Ortiz
+ * @version 3.0
  * @since 2025-12-09
  */
 @Entity

@@ -13,7 +13,7 @@ import java.util.List;
  * Proporciona endpoints CRUD completos para perfiles de usuario.
  * 
  * @author Juan Sebastián Bravo Rojas
- * @version 1.0
+ * @version 3.0
  * @since 2025-12-09
  */
 @RestController

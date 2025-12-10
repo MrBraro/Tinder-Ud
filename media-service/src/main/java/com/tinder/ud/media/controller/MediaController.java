@@ -9,11 +9,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * Controlador REST para la gestión de archivos multimedia.
- * Maneja la subida y eliminación de fotos de perfil.
+ * Controlador REST para manejar operaciones relacionadas
+ * con archivos multimedia (fotos de usuario).
+ * 
+ * Métodos:
+ * - agregarFoto(MediaDTO dto): agrega una foto para un usuario.
+ * - eliminarFoto(Long id): elimina una foto según ID.
+ * - obtenerFotos(Long idUsuario): obtiene todas las fotos de un usuario.
  * 
  * @author Paula Martinez
- * @version 1.0
+ * @version 3.0
  * @since 2025-12-09
  */
 @RestController
@@ -25,10 +30,10 @@ public class MediaController {
     private MediaService mediaService;
 
     /**
-     * Agrega una nueva foto al perfil de un usuario.
+     * Agrega una foto para un usuario.
      * 
-     * @param dto Datos de la foto (URL, idUsuario)
-     * @return ResponseEntity con el MediaDTO creado
+     * @param dto objeto con datos de la foto y del usuario.
+     * @return MediaDTO creado en la base de datos.
      */
     @PostMapping
     public ResponseEntity<MediaDTO> agregarFoto(@RequestBody MediaDTO dto) {
@@ -36,10 +41,10 @@ public class MediaController {
     }
 
     /**
-     * Elimina una foto del sistema.
+     * Elimina una foto por su ID.
      * 
-     * @param id ID de la foto a eliminar
-     * @return ResponseEntity vacío con código 204 o 404 si no existe
+     * @param id ID de la foto a eliminar.
+     * @return estado 204 si se eliminó, 404 si no existe.
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarFoto(@PathVariable Long id) {
@@ -54,8 +59,8 @@ public class MediaController {
     /**
      * Obtiene todas las fotos de un usuario.
      * 
-     * @param idUsuario ID del usuario
-     * @return ResponseEntity con lista de MediaDTO
+     * @param idUsuario ID del usuario.
+     * @return lista de MediaDTO pertenecientes al usuario.
      */
     @GetMapping("/usuario/{idUsuario}")
     public ResponseEntity<List<MediaDTO>> obtenerFotos(@PathVariable Long idUsuario) {

@@ -8,6 +8,9 @@ import java.util.List;
  * Separa la lógica de negocio de los controladores y el repositorio.
  *
  * Incluye operaciones CRUD y búsquedas por distintos campos.
+ * @author Juan Sebastian Bravo Rojas
+ * @version 3.0
+ * @since 2025-12-10
  */
 public interface UsuarioService {
 

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
  * Gestiona las interacciones de usuarios con otros perfiles.
  * 
  * @author Juan Sebastián Bravo Rojas
- * @version 1.0
+ * @version 3.0
  * @since 2025-12-09
  */
 @RestController

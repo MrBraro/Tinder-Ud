@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
  * <p>Expone operaciones que delegan la lógica al {@link AuthService}.</p>
  *
  * @author Juan Sebastian Bravo Rojas
- * @version 1.0
+ * @version 3.0
  * @since 2025-12-09
  */
 @RestController

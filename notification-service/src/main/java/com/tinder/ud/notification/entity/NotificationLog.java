@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
  * destinatario, mensaje y fecha en que fue enviada.
  * 
  * @author Paula Martinez
- * @version 1.0
+ * @version 3.0
  * @since 2025-12-09
  */
 @Entity

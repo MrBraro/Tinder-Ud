@@ -2,6 +2,22 @@ package com.tinder.ud.media.entity;
 
 import jakarta.persistence.*;
 
+/**
+ * Entidad JPA que representa una foto almacenada en el sistema.
+ * 
+ * Atributos:
+ * - id: PK autonumérica.
+ * - idUsuario: usuario al que pertenece la foto.
+ * - url: enlace o ruta de la imagen.
+ * - esPrincipal: marca si es la foto destacada del usuario.
+ * 
+ * Constructor vacío y completo disponibles.
+ * Getters y setters incluidos.
+ * 
+ * @author Paula Martinez
+ * @version 3.0
+ * @since 2025-12-10
+ */
 @Entity
 @Table(name = "media")
 public class Media {
@@ -19,8 +35,7 @@ public class Media {
     @Column(name = "es_principal")
     private Boolean esPrincipal;
 
-    public Media() {
-    }
+    public Media() {}
 
     public Media(Long id, Long idUsuario, String url, Boolean esPrincipal) {
         this.id = id;

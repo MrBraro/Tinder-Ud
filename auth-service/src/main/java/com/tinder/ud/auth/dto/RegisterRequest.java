@@ -5,7 +5,7 @@ package com.tinder.ud.auth.dto;
  * Contiene datos personales y credenciales iniciales.
  * 
  * @author Juan Sebastian Bravo Rojas
- * @version 1.0
+ * @version 3.0
  * @since 2025-12-09
  */
 public class RegisterRequest {

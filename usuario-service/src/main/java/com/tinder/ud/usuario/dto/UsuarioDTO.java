@@ -8,7 +8,7 @@ package com.tinder.ud.usuario.dto;
  * Incluye datos de perfil, información personal y foto.
  *
  * @author Juan Sebastian Bravo Rojas
- * @version 1.0
+ * @version 3.0
  * @since 2025-12-10
  */
 public class UsuarioDTO {

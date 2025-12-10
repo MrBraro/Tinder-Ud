@@ -11,7 +11,7 @@ import java.util.Optional;
  * Provee métodos personalizados para búsqueda por nickname y email.
  *
  * @author 
- * @version 1.0
+ * @version 3.0
  * @since 2025-12-10
  */
 @Repository

@@ -12,9 +12,9 @@ import java.util.List;
  *
  * <p>Incluye métodos personalizados para búsqueda específica.</p>
  *
- * @version 1.0
+ * @version 3.0
  * @since 2025-12-09
- * @author …
+ * @author Juan Estevan Ariza Ortiz
  */
 @Repository
 public interface MatchRepository extends JpaRepository<Match, Long> {

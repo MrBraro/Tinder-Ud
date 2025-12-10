@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 * Contiene información del seguidor, seguido y fecha de registro.
 * 
 * @author Juan Estevan Ariza Ortiz
-* @version 1.0
+* @version 3.0
 * @since 2025-12-09
 */
 @Entity

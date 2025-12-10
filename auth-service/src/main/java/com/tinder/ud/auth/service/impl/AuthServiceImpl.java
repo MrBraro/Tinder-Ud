@@ -9,7 +9,6 @@ import com.tinder.ud.auth.service.AuthService;
 import com.tinder.ud.auth.util.PasswordValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.Optional;
 
@@ -18,7 +17,7 @@ import java.util.Optional;
  * Gestiona el registro y login de usuarios con validación de credenciales.
  * 
  * @author Juan Sebastián Bravo Rojas
- * @version 1.0
+ * @version 3.0
  * @since 2025-12-09
  */
 @Service

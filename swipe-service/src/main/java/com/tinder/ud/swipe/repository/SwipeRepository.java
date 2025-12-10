@@ -11,7 +11,7 @@ import java.util.Optional;
  * Proporciona consultas adicionales para verificar likes recíprocos.
  * 
  * @author Juan
- * @version 1.0
+ * @version 3.0
  * @since 2025-12-09
  */
 @Repository

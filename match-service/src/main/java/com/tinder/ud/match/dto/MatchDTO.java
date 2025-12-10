@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
  * DTO que representa un match entre dos usuarios.
  * Incluye los identificadores involucrados y la fecha de creación. 
  * @author Juan Estevan Ariza Ortiz
- * @version 1.0
+ * @version 3.0
  * @since 2025-12-09
  */
 public class MatchDTO {

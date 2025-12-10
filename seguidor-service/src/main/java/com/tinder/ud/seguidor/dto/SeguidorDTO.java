@@ -2,6 +2,15 @@ package com.tinder.ud.seguidor.dto;
 
 import java.time.LocalDateTime;
 
+/**
+ *
+ * Representación de los seguidores, estableciendo sus posibles estados en la 
+ * base de datos
+ * 
+ * @author Juan Estevan Ariza Ortiz
+ * @version 3.0
+ * @since 2025-12-09
+ */
 public class SeguidorDTO {
     private Long id;
     private Long idSeguidor;

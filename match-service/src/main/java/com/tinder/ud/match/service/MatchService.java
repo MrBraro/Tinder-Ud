@@ -7,9 +7,9 @@ import java.util.List;
  * Interfaz del servicio que define la lógica para la gestión de matches.
  * Incluye verificación, creación y consulta de matches entre usuarios.
  *
- * @version 1.0
+ * @version 3.0
  * @since 2025-12-09
- * @author …
+ * @author Juan Estevan Ariza Ortiz
  */
 public interface MatchService {
 
