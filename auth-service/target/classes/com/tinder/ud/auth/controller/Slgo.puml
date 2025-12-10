@@ -1,0 +1,198 @@
+@startuml
+skinparam componentStyle uml2
+skinparam packageStyle rectangle
+title Tinder UD - Diagrama de Clases Completo
+' ==========================================
+' FRONTEND
+' ==========================================
+package "Frontend" {
+    class "index.html" as IndexHTML
+    class "app.html" as AppHTML
+    class "onboarding.html" as OnboardingHTML
+    class "recs.html" as RecsHTML
+    class "matches.html" as MatchesHTML
+    class "profile.html" as ProfileHTML
+
+    class "Script.js" as ScriptJS {
+        +login()
+        +register()
+        +getMatches()
+        +swipe()
+    }
+
+    IndexHTML ..> ScriptJS
+    AppHTML ..> ScriptJS
+}
+' ==========================================
+' MICROSERVICIOS
+' ==========================================
+package "auth-service :8081" {
+    class "Credenciales" as AuthCredEntity {
+        -Long id
+        -String email
+        -String password
+        -Long usuarioId
+    }
+    class "AuthController" as AuthCtrl {
+        +register()
+        +login()
+        +validate()
+    }
+    class "AuthServiceImpl" as AuthImpl
+    interface "CredencialesRepository" as AuthRepo
+
+    class "LoginRequest" as LoginReq
+    class "RegisterRequest" as RegReq
+    class "AuthResponse" as AuthResp
+    AuthCtrl --> AuthImpl
+    AuthImpl --> AuthRepo
+    AuthRepo --> AuthCredEntity
+    AuthCtrl ..> LoginReq
+    AuthCtrl ..> RegReq
+    AuthCtrl ..> AuthResp
+}
+package "usuario-service :8082" {
+    class "Usuario" as UserEntity {
+        -Long id
+        -String nombre
+        -String email
+        -String nickname
+        -String fotoUrl
+    }
+    class "UsuarioController" as UserCtrl {
+        +getAll()
+        +getById()
+        +create()
+    }
+    class "UsuarioServiceImpl" as UserImpl
+    interface "UsuarioRepository" as UserRepo
+    class "UsuarioDTO" as UserDTO
+    UserCtrl --> UserImpl
+    UserImpl --> UserRepo
+    UserRepo --> UserEntity
+    UserCtrl ..> UserDTO
+}
+package "swipe-service :8084" {
+    class "Swipe" as SwipeEntity {
+        -Long id
+        -Long idOrigen
+        -Long idDestino
+        -Boolean esLike
+    }
+    class "SwipeController" as SwipeCtrl {
+        +swipe()
+        +checkMatch()
+    }
+    class "SwipeServiceImpl" as SwipeImpl
+    interface "SwipeRepository" as SwipeRepo
+    class "SwipeDTO" as SwipeDTO
+    SwipeCtrl --> SwipeImpl
+    SwipeImpl --> SwipeRepo
+    SwipeRepo --> SwipeEntity
+    SwipeCtrl ..> SwipeDTO
+}
+package "match-service :8085" {
+    class "Match" as MatchEntity {
+        -Long id
+        -Long idUsuario1
+        -Long idUsuario2
+    }
+    class "MatchController" as MatchCtrl {
+        +createMatch()
+        +getMatches()
+    }
+    class "MatchServiceImpl" as MatchImpl
+    interface "MatchRepository" as MatchRepo
+    class "MatchDTO" as MatchDTO
+    MatchCtrl --> MatchImpl
+    MatchImpl --> MatchRepo
+    MatchRepo --> MatchEntity
+    MatchCtrl ..> MatchDTO
+}
+package "media-service :8086" {
+    class "Media" as MediaEntity {
+        -Long id
+        -Long idUsuario
+        -String url
+    }
+    class "MediaController" as MediaCtrl {
+        +upload()
+        +getByUser()
+    }
+    class "MediaServiceImpl" as MediaImpl
+    interface "MediaRepository" as MediaRepo
+    class "MediaDTO" as MediaDTO
+    MediaCtrl --> MediaImpl
+    MediaImpl --> MediaRepo
+    MediaRepo --> MediaEntity
+    MediaCtrl ..> MediaDTO
+}
+package "seguidor-service :8083" {
+    class "Seguidor" as SeguidorEntity {
+        -Long id
+        -Long idSeguidor
+        -Long idSeguido
+    }
+    class "SeguidorController" as SeguidorCtrl {
+        +seguir()
+        +getSeguidores()
+    }
+    class "SeguidorServiceImpl" as SeguidorImpl
+    interface "SeguidorRepository" as SeguidorRepo
+    class "SeguidorDTO" as SeguidorDTO
+    SeguidorCtrl --> SeguidorImpl
+    SeguidorImpl --> SeguidorRepo
+    SeguidorRepo --> SeguidorEntity
+    SeguidorCtrl ..> SeguidorDTO
+}
+package "notification-service :8087" {
+    class "NotificationLog" as NotifEntity {
+        -Long id
+        -String destinatario
+        -String mensaje
+    }
+    class "NotificationController" as NotifCtrl {
+        +send()
+        +getLogs()
+    }
+    class "NotificationServiceImpl" as NotifImpl
+    interface "NotificationLogRepository" as NotifRepo
+    class "NotificationDTO" as NotifDTO
+    NotifCtrl --> NotifImpl
+    NotifImpl --> NotifRepo
+    NotifRepo --> NotifEntity
+    NotifCtrl ..> NotifDTO
+}
+' ==========================================
+' BASE DE DATOS
+' ==========================================
+package "MySQL Database" {
+    map "Tablas" as DBTables {
+        credenciales => id, email, password
+        usuario => id, nombre, email
+        swipe => id, origen, destino
+        matches => id, user1, user2
+        media => id, url, user_id
+        seguidor => id, seguidor, seguido
+        notification_log => id, dest, msg
+    }
+}
+' ==========================================
+' RELACIONES GLOBALES
+' ==========================================
+ScriptJS --> AuthCtrl : HTTP
+ScriptJS --> UserCtrl : HTTP
+ScriptJS --> SwipeCtrl : HTTP
+ScriptJS --> MatchCtrl : HTTP
+' Comunicación entre servicios
+SwipeImpl ..> MatchCtrl : API Call (Create Match)
+AuthImpl ..> UserCtrl : API Call (Create Profile)
+' Persistencia
+AuthRepo ..> DBTables : Lee/Escribe
+UserRepo ..> DBTables : Lee/Escribe
+SwipeRepo ..> DBTables : Lee/Escribe
+MatchRepo ..> DBTables : Lee/Escribe
+MediaRepo ..> DBTables : Lee/Escribe
+SeguidorRepo ..> DBTables : Lee/Escribe
+NotifRepo ..> DBTables : Lee/Escribe
+@enduml
