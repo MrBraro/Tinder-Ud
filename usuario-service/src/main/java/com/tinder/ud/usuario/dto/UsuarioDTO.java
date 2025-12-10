@@ -1,6 +1,18 @@
 package com.tinder.ud.usuario.dto;
 
+/**
+ * Objeto de Transferencia de Datos (DTO) que representa la información
+ * de un usuario. Se usa para comunicar datos entre capas sin exponer
+ * directamente la entidad JPA.
+ *
+ * Incluye datos de perfil, información personal y foto.
+ *
+ * @author Juan Sebastian Bravo Rojas
+ * @version 1.0
+ * @since 2025-12-10
+ */
 public class UsuarioDTO {
+
     private Long id;
     private String nombre;
     private String apellidos;

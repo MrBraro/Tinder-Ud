@@ -30,6 +30,14 @@ public class Credenciales {
     public Credenciales() {
     }
 
+     /**
+     * Constructor con todos los atributos.
+     *
+     * @param id identificador
+     * @param email correo único
+     * @param password contraseña hash
+     * @param usuarioId id del usuario relacionado
+     */
     public Credenciales(Long id, String email, String password, Long usuarioId) {
         this.id = id;
         this.email = email;

@@ -3,12 +3,17 @@ package com.tinder.ud.usuario.entity;
 import jakarta.persistence.*;
 
 /**
- * Entidad JPA que representa un usuario en el sistema.
- * Almacena información del perfil incluyendo datos personales y preferencias.
- * 
- * @author Juan Sebastián Bravo Rojas
+ * Entidad JPA que representa la tabla 'usuario' en la base de datos.
+ * Almacena la información completa del perfil del usuario.
+ *
+ * Incluye datos personales, descripción y foto.
+ *
+ * Cada campo está mapeado como columna de BD y algunos poseen restricciones
+ * como unicidad en nickname y email.
+ *
+ * @author Juan Sebastian Bravo Rojas
  * @version 1.0
- * @since 2025-12-09
+ * @since 2025-12-10
  */
 @Entity
 @Table(name = "usuario")
@@ -42,11 +47,11 @@ public class Usuario {
     @Column(columnDefinition = "LONGTEXT")
     private String fotoUrl;
 
-    public Usuario() {
-    }
+    public Usuario() {}
 
-    public Usuario(Long id, String nombre, String apellidos, String nickname, String email, Integer edad, String genero,
-            String ciudad, String descripcion, String fotoUrl) {
+    
+    public Usuario(Long id, String nombre, String apellidos, String nickname, String email,
+                   Integer edad, String genero, String ciudad, String descripcion, String fotoUrl) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -139,3 +144,4 @@ public class Usuario {
         this.fotoUrl = fotoUrl;
     }
 }
+

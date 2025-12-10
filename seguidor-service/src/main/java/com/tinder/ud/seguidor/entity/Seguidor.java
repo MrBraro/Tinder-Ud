@@ -1,33 +1,61 @@
 package com.tinder.ud.seguidor.entity;
 
+
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
+
+/**
+* Entidad que representa la relación de seguimiento entre dos usuarios.
+* Contiene información del seguidor, seguido y fecha de registro.
+* 
+* @author Juan Estevan Ariza Ortiz
+* @version 1.0
+* @since 2025-12-09
+*/
 @Entity
 @Table(name = "seguidor")
 public class Seguidor {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    @Column(name = "id_seguidor", nullable = false)
-    private Long idSeguidor; // El usuario que sigue
+/** ID autogenerado de la relación */
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+private Long id;
 
-    @Column(name = "id_seguido", nullable = false)
-    private Long idSeguido; // El usuario que es seguido
 
-    private LocalDateTime fecha;
+/** ID del usuario seguidor */
+@Column(name = "id_seguidor", nullable = false)
+private Long idSeguidor;
 
-    public Seguidor() {
-    }
 
-    public Seguidor(Long id, Long idSeguidor, Long idSeguido, LocalDateTime fecha) {
-        this.id = id;
-        this.idSeguidor = idSeguidor;
-        this.idSeguido = idSeguido;
-        this.fecha = fecha;
-    }
+/** ID del usuario seguido */
+@Column(name = "id_seguido", nullable = false)
+private Long idSeguido;
+
+
+/** Fecha en la que se creó la relación */
+private LocalDateTime fecha;
+
+
+/** Constructor vacío requerido por JPA */
+public Seguidor() {}
+
+
+/**
+* Constructor completo.
+*
+* @param id identificador
+* @param idSeguidor usuario seguidor
+* @param idSeguido usuario seguido
+* @param fecha fecha de creación
+*/
+public Seguidor(Long id, Long idSeguidor, Long idSeguido, LocalDateTime fecha) {
+this.id = id;
+this.idSeguidor = idSeguidor;
+this.idSeguido = idSeguido;
+this.fecha = fecha;
+}
 
     public Long getId() {
         return id;
