@@ -3,6 +3,13 @@ package com.tinder.ud.auth.util;
 import org.springframework.stereotype.Component;
 import java.util.regex.Pattern;
 
+/*
+ * Verificación de los requerimientos de la contraseña
+ * 
+ * @author Juan Sebastian BRavo Rojas
+ * @version 1.0
+ * @since 2025-12-09
+*/
 @Component
 public class PasswordValidator {
 

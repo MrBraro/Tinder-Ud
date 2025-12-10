@@ -5,14 +5,16 @@ import java.time.LocalDateTime;
 
 /**
  * Entidad JPA que representa un match entre dos usuarios.
- * Se crea cuando ambos usuarios se han dado like mutuamente.
- * 
- * @author Juan Estevan Ariza
+ * Se persiste cuando ambos han mostrado interés mutuo.
+ *
+ * <p>Corresponde a la tabla "matches".</p>
+ *
+ * @author …
  * @version 1.0
  * @since 2025-12-09
  */
 @Entity
-@Table(name = "matches") // 'match' is a reserved keyword in MySQL sometimes
+@Table(name = "matches")
 public class Match {
 
     @Id
@@ -27,9 +29,20 @@ public class Match {
 
     private LocalDateTime fecha;
 
+    /**
+     * Constructor vacío requerido por JPA.
+     */
     public Match() {
     }
 
+    /**
+     * Constructor completo.
+     *
+     * @param id identificador del match
+     * @param idUsuario1 primer usuario
+     * @param idUsuario2 segundo usuario
+     * @param fecha fecha del match
+     */
     public Match(Long id, Long idUsuario1, Long idUsuario2, LocalDateTime fecha) {
         this.id = id;
         this.idUsuario1 = idUsuario1;
@@ -37,6 +50,7 @@ public class Match {
         this.fecha = fecha;
     }
 
+    // Getters y setters estándar...
     public Long getId() {
         return id;
     }

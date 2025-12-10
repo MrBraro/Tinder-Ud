@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
  * Entidad JPA que representa un swipe (like o dislike) entre usuarios.
  * Registra la interacción de un usuario hacia otro perfil.
  * 
- * @author Juan Estevan Ariza
+ * @author Juan Estevan Ariza Ortiz
  * @version 1.0
  * @since 2025-12-09
  */

@@ -1,5 +1,13 @@
 package com.tinder.ud.auth.dto;
 
+/**
+ * DTO utilizado para registrar nuevos usuarios en el sistema.
+ * Contiene datos personales y credenciales iniciales.
+ * 
+ * @author Juan Sebastian Bravo Rojas
+ * @version 1.0
+ * @since 2025-12-09
+ */
 public class RegisterRequest {
     private String email;
     private String password;

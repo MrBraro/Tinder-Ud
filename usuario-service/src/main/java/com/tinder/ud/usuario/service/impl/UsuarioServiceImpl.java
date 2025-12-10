@@ -10,12 +10,25 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Implementación del servicio de usuarios.
+ * Contiene la lógica de negocio para la creación, consulta, actualización
+ * y eliminación de usuarios.
+ *
+ * También incluye mapeo entre entidades y DTOs.
+ */
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    /**
+     * Crea un nuevo usuario en el sistema.
+     *
+     * @param dto datos del usuario a crear
+     * @return UsuarioDTO con los datos creados
+     */
     @Override
     public UsuarioDTO crearUsuario(UsuarioDTO dto) {
         if (usuarioRepository.existsByNickname(dto.getNickname())) {
@@ -26,6 +39,12 @@ public class UsuarioServiceImpl implements UsuarioService {
         return mapToDTO(guardado);
     }
 
+    /**
+     * Obtiene un usuario por su ID.
+     *
+     * @param id identificador del usuario
+     * @return UsuarioDTO con la información encontrada
+     */
     @Override
     public UsuarioDTO obtenerUsuarioPorId(Long id) {
         Usuario usuario = usuarioRepository.findById(id)
@@ -33,6 +52,12 @@ public class UsuarioServiceImpl implements UsuarioService {
         return mapToDTO(usuario);
     }
 
+    /**
+     * Obtiene un usuario por su nickname.
+     *
+     * @param nickname nickname del usuario
+     * @return UsuarioDTO con la información encontrada
+     */
     @Override
     public UsuarioDTO obtenerUsuarioPorNickname(String nickname) {
         Usuario usuario = usuarioRepository.findByNickname(nickname)
@@ -40,6 +65,12 @@ public class UsuarioServiceImpl implements UsuarioService {
         return mapToDTO(usuario);
     }
 
+    /**
+     * Obtiene un usuario por su email.
+     *
+     * @param email correo del usuario
+     * @return UsuarioDTO con la información encontrada
+     */
     @Override
     public UsuarioDTO obtenerUsuarioPorEmail(String email) {
         Usuario usuario = usuarioRepository.findByEmail(email)
@@ -47,6 +78,13 @@ public class UsuarioServiceImpl implements UsuarioService {
         return mapToDTO(usuario);
     }
 
+    /**
+     * Actualiza un usuario existente.
+     *
+     * @param id  ID del usuario a actualizar
+     * @param dto datos nuevos para modificar
+     * @return UsuarioDTO actualizado
+     */
     @Override
     public UsuarioDTO actualizarUsuario(Long id, UsuarioDTO dto) {
         Usuario usuario = usuarioRepository.findById(id)
@@ -58,12 +96,16 @@ public class UsuarioServiceImpl implements UsuarioService {
         usuario.setGenero(dto.getGenero());
         usuario.setCiudad(dto.getCiudad());
         usuario.setDescripcion(dto.getDescripcion());
-        // No actualizamos nickname ni email por seguridad básica aquí
 
         Usuario actualizado = usuarioRepository.save(usuario);
         return mapToDTO(actualizado);
     }
 
+    /**
+     * Elimina un usuario por su ID.
+     *
+     * @param id ID del usuario
+     */
     @Override
     public void eliminarUsuario(Long id) {
         if (!usuarioRepository.existsById(id)) {
@@ -72,6 +114,12 @@ public class UsuarioServiceImpl implements UsuarioService {
         usuarioRepository.deleteById(id);
     }
 
+    /**
+     * Lista todos los usuarios registrados.
+     *
+     * @param UsuarioDTO
+     * @return lista de UsuarioDTO
+     */
     @Override
     public List<UsuarioDTO> listarUsuarios() {
         return usuarioRepository.findAll().stream()
@@ -79,13 +127,21 @@ public class UsuarioServiceImpl implements UsuarioService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Verifica si un usuario existe por su ID.
+     *
+     * @param id ID del usuario
+     * @return true si existe, false si no
+     */
     @Override
     public boolean existeUsuario(Long id) {
         return usuarioRepository.existsById(id);
     }
 
-    // Mappers sencillos (podría usar MapStruct pero lo haré manual para evitar
-    // config extra)
+    /**
+     * Convierte una entidad Usuario a DTO.
+     * @param Usuario
+     */
     private UsuarioDTO mapToDTO(Usuario entity) {
         UsuarioDTO dto = new UsuarioDTO();
         dto.setId(entity.getId());
@@ -101,9 +157,12 @@ public class UsuarioServiceImpl implements UsuarioService {
         return dto;
     }
 
+    /**
+     * Convierte un DTO a entidad Usuario.
+     * @param UsuarioDTO
+     */
     private Usuario mapToEntity(UsuarioDTO dto) {
         Usuario entity = new Usuario();
-        // ID se genera auto
         entity.setNombre(dto.getNombre());
         entity.setApellidos(dto.getApellidos());
         entity.setNickname(dto.getNickname());

@@ -12,6 +12,15 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Implementación del servicio de matches.
+ * Aplica la lógica para verificar interés mutuo entre usuarios
+ * consultando el swipe-service y gestionando persistencia en la base de datos.
+ *
+ * @author Juan Estevan Ariza Ortiz
+ * @version 1.0
+ * @since 2025-12-09
+ */
 @Service
 public class MatchServiceImpl implements MatchService {
 
@@ -22,9 +31,15 @@ public class MatchServiceImpl implements MatchService {
     private RestTemplate restTemplate;
 
     private final String SWIPE_SERVICE_URL = "http://localhost:8084/swipe/check-like/";
-    // private final String NOTIFICATION_SERVICE_URL =
-    // "http://localhost:8087/notification/log";
 
+        /**
+     * Verifica si dos usuarios tienen interés mutuo.
+     * Genera y almacena un match si ambos han dado like.
+     *
+     * @param idUsuario1 primer usuario
+     * @param idUsuario2 segundo usuario
+     * @return MatchDTO si existe match, null si no
+     */
     @Override
     public MatchDTO verificarMatch(Long idUsuario1, Long idUsuario2) {
         // Enforce order to avoid duplicates (min, max)
@@ -63,6 +78,12 @@ public class MatchServiceImpl implements MatchService {
         }
     }
 
+     /**
+     * Obtiene todos los matches asociados a un usuario.
+     *
+     * @param idUsuario identificador del usuario
+     * @return lista de MatchDTO
+     */
     @Override
     public List<MatchDTO> obtenerMatches(Long idUsuario) {
         return matchRepository.findByIdUsuario1OrIdUsuario2(idUsuario, idUsuario).stream()
@@ -70,6 +91,12 @@ public class MatchServiceImpl implements MatchService {
                 .collect(Collectors.toList());
     }
 
+     /**
+     * Convierte una entidad Match en un MatchDTO.
+     *
+     * @param entity entidad Match
+     * @return DTO resultante
+     */
     private MatchDTO mapToDTO(Match entity) {
         MatchDTO dto = new MatchDTO();
         dto.setId(entity.getId());
