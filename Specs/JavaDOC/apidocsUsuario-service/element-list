@@ -1,0 +1,7 @@
+com.tinder.ud.usuario
+com.tinder.ud.usuario.controller
+com.tinder.ud.usuario.dto
+com.tinder.ud.usuario.entity
+com.tinder.ud.usuario.repository
+com.tinder.ud.usuario.service
+com.tinder.ud.usuario.service.impl

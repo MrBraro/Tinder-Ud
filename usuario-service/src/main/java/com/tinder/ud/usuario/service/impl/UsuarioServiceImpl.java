@@ -121,7 +121,6 @@ public class UsuarioServiceImpl implements UsuarioService {
     /**
      * Lista todos los usuarios registrados.
      *
-     * @param UsuarioDTO
      * @return lista de UsuarioDTO
      */
     @Override

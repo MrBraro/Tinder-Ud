@@ -1,0 +1,7 @@
+com.tinder.ud.seguidor
+com.tinder.ud.seguidor.controller
+com.tinder.ud.seguidor.dto
+com.tinder.ud.seguidor.entity
+com.tinder.ud.seguidor.repository
+com.tinder.ud.seguidor.service
+com.tinder.ud.seguidor.service.impl

@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.tinder.ud.auth"},{"l":"com.tinder.ud.auth.controller"},{"l":"com.tinder.ud.auth.dto"},{"l":"com.tinder.ud.auth.entity"},{"l":"com.tinder.ud.auth.repository"},{"l":"com.tinder.ud.auth.service"},{"l":"com.tinder.ud.auth.service.impl"},{"l":"com.tinder.ud.auth.util"}];updateSearchResults();

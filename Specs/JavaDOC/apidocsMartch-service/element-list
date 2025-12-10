@@ -1,0 +1,7 @@
+com.tinder.ud.match
+com.tinder.ud.match.controller
+com.tinder.ud.match.dto
+com.tinder.ud.match.entity
+com.tinder.ud.match.repository
+com.tinder.ud.match.service
+com.tinder.ud.match.service.impl

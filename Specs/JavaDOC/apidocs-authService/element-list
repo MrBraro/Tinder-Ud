@@ -1,0 +1,8 @@
+com.tinder.ud.auth
+com.tinder.ud.auth.controller
+com.tinder.ud.auth.dto
+com.tinder.ud.auth.entity
+com.tinder.ud.auth.repository
+com.tinder.ud.auth.service
+com.tinder.ud.auth.service.impl
+com.tinder.ud.auth.util

@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.tinder.ud.match"},{"l":"com.tinder.ud.match.controller"},{"l":"com.tinder.ud.match.dto"},{"l":"com.tinder.ud.match.entity"},{"l":"com.tinder.ud.match.repository"},{"l":"com.tinder.ud.match.service"},{"l":"com.tinder.ud.match.service.impl"}];updateSearchResults();

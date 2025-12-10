@@ -1,0 +1,7 @@
+com.tinder.ud.media
+com.tinder.ud.media.controller
+com.tinder.ud.media.dto
+com.tinder.ud.media.entity
+com.tinder.ud.media.repository
+com.tinder.ud.media.service
+com.tinder.ud.media.service.impl

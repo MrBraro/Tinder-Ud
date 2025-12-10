@@ -1,0 +1,7 @@
+com.tinder.ud.swipe
+com.tinder.ud.swipe.controller
+com.tinder.ud.swipe.dto
+com.tinder.ud.swipe.entity
+com.tinder.ud.swipe.repository
+com.tinder.ud.swipe.service
+com.tinder.ud.swipe.service.impl

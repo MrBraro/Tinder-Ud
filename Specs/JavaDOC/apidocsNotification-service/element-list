@@ -1,0 +1,7 @@
+com.tinder.ud.notification
+com.tinder.ud.notification.controller
+com.tinder.ud.notification.dto
+com.tinder.ud.notification.entity
+com.tinder.ud.notification.repository
+com.tinder.ud.notification.service
+com.tinder.ud.notification.service.impl
